@@ -36,7 +36,7 @@ jobs:
       - name: Gitleaks Setup
         uses: gitleaks/gitleaks-action@v2
       - name: Gitleaks scan
-        uses: |
+        run: |
           gitleaks detect --source ./client --exit-code 1
           gitleaks detect --source ./api --exit-code 1
   trivy_fs_scan:
