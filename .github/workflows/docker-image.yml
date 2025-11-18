@@ -114,7 +114,7 @@ jobs:
         uses: aquasecurity/trivy-action@0.28.0
         with:
           scan-type: image
-          image-ref: susudo/frontend:${{env.IMAGE_TAG}}
+          image-ref: blackhator/frontend:${{env.IMAGE_TAG}}
           format: table
           exit-code: 0
           vuln-type: os,library
@@ -147,7 +147,7 @@ jobs:
                | .spec.template.spec.containers[]
                | select(.name=="backend")
                | .image)
-            = "blackhat/backend:" + strenv(IMAGE_TAG)
+            = "blackhator/backend:" + strenv(IMAGE_TAG)
           ' k8s-prod/backend.yaml
 
           # -- Update ONLY Deployment images (frontend)
@@ -156,7 +156,7 @@ jobs:
                | .spec.template.spec.containers[]
                | select(.name=="frontend")
                | .image)
-            = "blackhat/frontend:" + strenv(IMAGE_TAG)
+            = "blackhator/frontend:" + strenv(IMAGE_TAG)
           ' k8s-prod/frontend.yaml
       - name: Commit and Push to CD repo
         working-directory: cd
